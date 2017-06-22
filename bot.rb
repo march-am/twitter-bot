@@ -1,35 +1,34 @@
-require 'csv'
 require 'twitter'
-require 'dotenv'
+require 'csv'
 require 'pry'
-
+require 'dotenv'
 Dotenv.load
-Twitter.configure do |c|
-  c.consumer_key       = config['CONSUMER_KEY']
-  c.consumer_secret    = config['CONSUMER_SECRET']
-  c.oauth_token        = config['ACCESS_TOKEN']
-  c.oauth_token_secret = config['ACCESS_SECRET']
-end
 
 class TwitterUser
-  attr_accessor :followers, :friends, :pending_users
-  def initialize
-    @followers     = Twitter.follower_ids.collection
-    @friends       = Twitter.friend_ids.collection
-    @pending_users = Twitter.friendships_outgoing.collection
+  attr_reader :client
+
+  def client
+    @client ||= Twitter::REST::Client.new do |config|
+      config.consumer_key        = ENV['CONSUMER_KEY']
+      config.consumer_secret     = ENV['CONSUMER_SECRET']
+      config.access_token        = ENV['ACCESS_TOKEN']
+      config.access_token_secret = ENV['ACCESS_SECRET']
+    end
   end
 end
 
 class FollowMaganer
+  attr_writer :user
+
   def initialize(user)
     @user = user
   end
 
   def refollow_all
-    followed = Array.new
+    followed = []
     @user.followers.each do |follower|
       unless @user.friends.include?(follower)
-        unless @user.pending_users.include?(follower)
+        unless @user.friendships_outgoing.include?(follower)
           Twitter.follow(follower)
           followed << follower
         end
@@ -40,7 +39,7 @@ class FollowMaganer
 
   # 一方的にフォローしているユーザをリムーブ
   def unfollow_all
-    unfollowed = Array.new
+    unfollowed = []
     @user.friends.each do |friend|
       unless @user.followers.include?(friend)
         Twitter.unfollow(friend)
@@ -51,10 +50,42 @@ class FollowMaganer
   end
 end
 
-user    = TwitterUser.new
-maganer = FollowMaganer.new(user)
+class TweetManager
+  attr_writer :user
 
-followed = manager.refollow_all
+  def initialize(user)
+    @user = user
+  end
 
-puts Time.now.to_s+" followed"
-p followed
+  def scheduled_tweets
+    # Tweet something
+    # tweeted
+  end
+end
+
+class ScheduleLoader
+
+end
+
+user   = TwitterUser.new
+follow = FollowMaganer.new(user)
+tweet  = TweetMaganer.new(user)
+
+followed = follow.refollow_all
+tweeted  = tweet.scheduled_tweets
+
+### output ###
+
+puts "at #{Time.now.to_s}"
+if followed
+  puts 'Followed:'
+  p followed.map { |f| f.name }.join(', ')
+elsif unfollowed
+  puts 'Unfollowed:'
+  p unfollowed.map { |f| f.name }.join(', ')
+elsif tweeted
+  puts 'Tweeted:'
+  p tweeted.map { |f| f.text }
+else
+  puts 'did nothing'
+end
