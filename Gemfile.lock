@@ -1,10 +1,27 @@
 GEM
   remote: https://rubygems.org/
   specs:
+    activemodel (5.1.4)
+      activesupport (= 5.1.4)
+    activerecord (5.1.4)
+      activemodel (= 5.1.4)
+      activesupport (= 5.1.4)
+      arel (~> 8.0)
+    activesupport (5.1.4)
+      concurrent-ruby (~> 1.0, >= 1.0.2)
+      i18n (~> 0.7)
+      minitest (~> 5.1)
+      tzinfo (~> 1.1)
     addressable (2.5.1)
       public_suffix (~> 2.0, >= 2.0.2)
+    arel (8.0.0)
+    binding_of_caller (0.7.3)
+      debug_inspector (>= 0.0.1)
     buftok (0.2.0)
-    coderay (1.1.1)
+    byebug (9.1.0)
+    coderay (1.1.2)
+    concurrent-ruby (1.0.5)
+    debug_inspector (0.0.3)
     domain_name (0.5.20170404)
       unf (>= 0.0.5, < 1.0.0)
     dotenv (2.2.1)
@@ -20,18 +37,26 @@ GEM
       domain_name (~> 0.5)
     http-form_data (1.0.3)
     http_parser.rb (0.6.0)
+    i18n (0.9.1)
+      concurrent-ruby (~> 1.0)
     memoizable (0.4.2)
       thread_safe (~> 0.3, >= 0.3.1)
-    method_source (0.8.2)
+    method_source (0.9.0)
+    minitest (5.10.3)
     multipart-post (2.0.0)
     naught (1.1.0)
-    pry (0.10.4)
+    pry (0.11.3)
       coderay (~> 1.1.0)
-      method_source (~> 0.8.1)
-      slop (~> 3.4)
+      method_source (~> 0.9.0)
+    pry-alias (0.0.1)
+      binding_of_caller
+      pry
+    pry-byebug (3.5.1)
+      byebug (~> 9.1)
+      pry (~> 0.10)
     public_suffix (2.0.5)
+    retryable (2.0.4)
     simple_oauth (0.3.1)
-    slop (3.6.0)
     thread_safe (0.3.6)
     twitter (6.1.0)
       addressable (~> 2.5)
@@ -43,6 +68,8 @@ GEM
       memoizable (~> 0.4.2)
       naught (~> 1.1)
       simple_oauth (~> 0.3.1)
+    tzinfo (1.2.4)
+      thread_safe (~> 0.1)
     unf (0.1.4)
       unf_ext
     unf_ext (0.0.7.4)
@@ -51,12 +78,15 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  activerecord
   dotenv
-  pry
+  pry-alias
+  pry-byebug
+  retryable
   twitter
 
 RUBY VERSION
-   ruby 2.4.1p111
+   ruby 2.4.2p198
 
 BUNDLED WITH
-   1.15.1
+   1.15.4
