@@ -44,6 +44,7 @@ GEM
     method_source (0.9.0)
     minitest (5.10.3)
     multipart-post (2.0.0)
+    mysql2 (0.4.10)
     naught (1.1.0)
     pry (0.11.3)
       coderay (~> 1.1.0)
@@ -58,6 +59,7 @@ GEM
     retryable (2.0.4)
     simple_oauth (0.3.1)
     thread_safe (0.3.6)
+    tod (2.1.1)
     twitter (6.1.0)
       addressable (~> 2.5)
       buftok (~> 0.2.0)
@@ -80,9 +82,11 @@ PLATFORMS
 DEPENDENCIES
   activerecord
   dotenv
+  mysql2
   pry-alias
   pry-byebug
   retryable
+  tod
   twitter
 
 RUBY VERSION

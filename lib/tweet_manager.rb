@@ -1,21 +1,18 @@
 class TweetManager
   include Retry
+  attr_reader :user, :tweeted
 
   def initialize(user)
     @user = user
+    @tweeted = []
   end
 
   def scheduled_tweets
-    tweeted = []
-    twitter_retry do
+    twitter_retry_to do
       tweet_text = load_tweet
-      tweet = @user.update(tweet_text)
+      tweet = user.update(tweet_text)
       tweeted << tweet
     end
     tweeted
-  end
-
-  def load_tweet
-
   end
 end

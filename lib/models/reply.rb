@@ -1,2 +1,2 @@
-class Relry < ActiveRecord::Base
+class Reply < ActiveRecord::Base
 end

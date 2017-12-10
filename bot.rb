@@ -1,8 +1,10 @@
-require 'twitter'
+require 'active_record'
 require 'csv'
 require 'retryable'
+require 'tod'
+require 'twitter'
 require 'optparse'
-require 'active_record'
+require 'yaml'
 
 require './lib/common/setup'
 if OPTS[:env] == 'development'
@@ -11,13 +13,15 @@ if OPTS[:env] == 'development'
 end
 
 require './lib/common/retry'
-require './lib/models/schedules'
-require './lib/models/random'
+require './lib/models/schedule'
+require './lib/models/usual'
 require './lib/models/reply'
 require './lib/relationship_manager'
 require './lib/schedule_runner'
 require './lib/tweet_manager'
 require './lib/twitter_user'
+
+EXEC_INTERVAL = (60 * 10).freeze
 
 =begin
 
