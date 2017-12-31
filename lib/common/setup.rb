@@ -1,11 +1,5 @@
-Dotenv.load
-
 option = {}
-OptionParser.new do |opt|
-  opt.on('-e [VALUE]', '環境名') { |v| option[:env] = v }
-  opt.parse!(ARGV)
-end
-option[:env] ||= 'development'
+option[:env] ||= ENV['APP_ENV'] || 'development'
 OPTS = option.freeze
 
 ar_config = YAML.load_file( './database.yml' )

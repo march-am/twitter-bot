@@ -1,9 +1,9 @@
-class RelationshipMaganer
+class RelationshipManager
   include Retry
   attr_reader :user, :followed, :unfollowed
 
   def initialize(user)
-    @user = user
+    @user = user.client
     @followed = []
     @unfollowed = []
   end

@@ -16,7 +16,7 @@ class ScheduleRunner
     binding.pry
     user        = TwitterUser.new
     friends_mng = RelationshipManager.new(user)
-    tweet_mng   = TweetMaganer.new(user)
+    tweet_mng   = TweetManager.new(user)
 
     followed    = friends_mng.refollow_all
     # unfollowed  = follow_mng.unfollow_onesided

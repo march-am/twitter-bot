@@ -3,13 +3,13 @@ require 'csv'
 require 'retryable'
 require 'tod'
 require 'twitter'
-require 'optparse'
 require 'yaml'
 
 require './lib/common/setup'
 if OPTS[:env] == 'development'
   require 'pry'
   require 'dotenv'
+  Dotenv.load
 end
 
 require './lib/common/retry'
