@@ -27,4 +27,5 @@
 .ruby-version
 
 # Ignore Secret-key files
-.env
+.env*
+database.yml

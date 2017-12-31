@@ -1,6 +1,19 @@
 source 'https://rubygems.org'
-ruby '2.4.1'
+ruby '2.4.2'
 
-gem 'pry'
+gem 'activerecord'
+gem 'mysql2'
+gem 'retryable'
+gem 'tod'
 gem 'twitter'
-gem 'dotenv'
+
+group :developemt do
+  gem 'dotenv'
+  gem 'pry-alias'
+  gem 'pry-byebug'
+end
+
+group :developemt, :test do
+  gem 'rspec'
+  gem 'factory_bot'
+end
