@@ -11,12 +11,10 @@ class RelationshipMaganer
   def refollow_all
     twitter_retry_to do
       user.followers.each do |follower|
-        unless user.friends.include?(follower)
-          unless user.friendships_outgoing.include?(follower)
-            user.follow(follower)
-            followed  << follower
-          end
-        end
+        next if user.friends.include?(follower)
+        next if user.friendships_outgoing.include?(follower)
+        user.follow(follower)
+        followed  << follower
       end
     end
     followed
@@ -26,10 +24,9 @@ class RelationshipMaganer
   def unfollow_onesided
     twitter_retry_to do
       user.friends.each do |friend|
-        unless user.followers.include?(friend)
-          user.unfollow(friend)
-          unfollowed << friend
-        end
+        next if user.followers.include?(friend)
+        user.unfollow(friend)
+        unfollowed << friend
       end
     end
     unfollowed

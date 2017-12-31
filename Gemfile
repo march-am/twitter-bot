@@ -12,3 +12,8 @@ group :developemt do
   gem 'pry-alias'
   gem 'pry-byebug'
 end
+
+group :developemt, :test do
+  gem 'rspec'
+  gem 'factory_bot'
+end

@@ -15,4 +15,7 @@ class TweetManager
     end
     tweeted
   end
+
+  def load_tweet
+  end
 end

@@ -11,4 +11,4 @@ OPTS = option.freeze
 ar_config = YAML.load_file( './database.yml' )
 ActiveRecord::Base.establish_connection(ar_config['db'][OPTS[:env]])
 ActiveRecord::Base.default_timezone = :local
-Time.zone_default =  Time.find_zone! 'Tokyo'
+Time.zone_default = Time.find_zone! 'Tokyo'
