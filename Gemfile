@@ -13,7 +13,7 @@ group :developemt do
   gem 'pry-byebug'
 end
 
-group :test do
+group :developemt, :test do
   gem 'rspec'
   gem 'factory_bot'
   gem 'guard'
