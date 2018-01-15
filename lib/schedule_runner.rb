@@ -13,7 +13,7 @@ class ScheduleRunner
   end
 
   def run
-    binding.pry
+    # binding.pry
     user        = TwitterUser.new
     friends_mng = RelationshipManager.new(user)
     tweet_mng   = TweetManager.new(user)
