@@ -8,9 +8,9 @@ class TweetManager
   end
 
   def tweet_scheduled
+    to_tweet = load_tweet
+    return unless to_tweet
     twitter_retry_to do
-      to_tweet = load_tweet
-      return unless to_tweet
       now_tweeted = user.update(to_tweet.content)
       to_tweet.update(last_tweeted_at: Time.now)
       tweeted << now_tweeted
