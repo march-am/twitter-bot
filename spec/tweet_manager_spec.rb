@@ -14,9 +14,9 @@ describe TweetManager do
     it 'returns nearly now tweets' do
       to_tweet = manager.load_tweet
       if Schedule.all.size.zero?
-        expect(to_tweet.size).to eq(1)
-      else
         expect(to_tweet).to eq(nil)
+      else
+        expect(to_tweet.size).to eq(1)
       end
     end
   end
