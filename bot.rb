@@ -21,7 +21,7 @@ require './lib/schedule_runner'
 require './lib/tweet_manager'
 require './lib/twitter_user'
 
-EXEC_INTERVAL = (60 * 10).freeze
+EXEC_INTERVAL_SEC = (60 * 10).freeze
 
 =begin
 
