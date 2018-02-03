@@ -1,6 +1,8 @@
 require 'spec_helper'
 
 describe TweetManager do
+  include TweetManagerHelper
+
   let(:manager) { TweetManager.new(mock_user) }
 
   describe '#tweet_scheduled' do
@@ -19,16 +21,5 @@ describe TweetManager do
       to_tweet = manager.load_tweet
       expect(to_tweet.id).to eq will_tweet_soon.id
     end
-  end
-
-  def mock_user
-    mock_user = double('Twitter user')
-    mock_client = Class.new do
-      def self.update(content)
-        content
-      end
-    end
-    allow(mock_user).to receive(:client).and_return(mock_client)
-    mock_user
   end
 end
