@@ -12,13 +12,19 @@ class TweetManager
     return unless to_tweet
     twitter_retry_to do
       now_tweeted = user.update(to_tweet.content)
-      to_tweet.update(last_tweeted_at: Time.now)
+      to_tweet.update(last_tweeted_at: now)
       tweeted << now_tweeted
     end
     tweeted
   end
 
   def load_tweet
-    Schedule.nearly_now.sample
+    Schedule.nearly_at(now).sample
   end
+
+  private
+
+    def now
+      @now ||= Time.zone.now
+    end
 end

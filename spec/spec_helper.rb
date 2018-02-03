@@ -2,6 +2,7 @@ ENV['APP_ENV'] = 'test'
 require './bot.rb'
 require 'database_cleaner'
 require 'factory_bot'
+require 'pry'
 Dir[File.join(File.dirname(__FILE__), '..', 'lib', '**/*.rb')].each { |f| require f }
 
 RSpec.configure do |config|
