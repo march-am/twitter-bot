@@ -6,9 +6,10 @@ class Schedule < ActiveRecord::Base
 
   class << self
     # 指定時間のEXEC_INTERVAL秒内 && last_tweeted_at から1時間以上経っているtweetをselect
-    def nearly_at(tod)
-      end_tod   = tod + EXEC_INTERVAL_SEC
-      start_tod = tod - EXEC_INTERVAL_SEC
+    def nearly_at(time)
+      time = Tod::TimeOfDay(time) if time.is_a? Time
+      end_tod   = time + EXEC_INTERVAL_SEC
+      start_tod = time - EXEC_INTERVAL_SEC
       # FIXME: RelationじゃなくてArrayにしちゃうのでなんとかしたい
       select do |tweet|
         Tod::Shift.new(start_tod, end_tod).include?(tweet.time) \
@@ -17,7 +18,7 @@ class Schedule < ActiveRecord::Base
     end
 
     def now
-      Time.now
+      Time.zone.now
     end
   end
 end
