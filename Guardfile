@@ -12,5 +12,5 @@ guard :rspec, cmd: 'bin/rspec' do
   ruby = dsl.ruby
   dsl.watch_spec_files_for(ruby.lib_files)
 
-  watch(%r(lib/(.*?).rb)) { |file| "spec/#{file[1]}_spec.rb" }
+  watch(%r{lib/(.*?).rb}) { |file| "spec/#{file[1]}_spec.rb" }
 end

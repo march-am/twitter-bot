@@ -14,7 +14,7 @@ class RelationshipManager
         next if user.friends.include?(follower)
         next if user.friendships_outgoing.include?(follower)
         user.follow(follower)
-        followed  << follower
+        followed << follower
       end
     end
     followed

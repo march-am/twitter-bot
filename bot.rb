@@ -23,19 +23,17 @@ require './lib/twitter_user'
 
 EXEC_INTERVAL_SEC = (60 * 10).freeze
 
-=begin
-
+#
 # 仕様
-
-- cronで10分に1回実行
-- DBを読み込み、実行した状況に合わせてツイートやフォロー管理をする
-- 結果を標準出力し、cronでloggingする
-
-TODO:
-- CL引数で必要な処理（フォロー/ツイート）だけを実行できるようにする
-- CL引数に合わせて必要なモジュールだけrequireして読み込みを軽くする
-
-=end
+#
+# - cronで10分に1回実行
+# - DBを読み込み、実行した状況に合わせてツイートやフォロー管理をする
+# - 結果を標準出力し、cronでloggingする
+#
+# TODO:
+# - CL引数で必要な処理（フォロー/ツイート）だけを実行できるようにする
+# - CL引数に合わせて必要なモジュールだけrequireして読み込みを軽くする
+#
 
 # runner = ScheduleRunner.new
 # runner.run
