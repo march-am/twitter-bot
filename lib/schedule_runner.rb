@@ -12,12 +12,10 @@ class ScheduleRunner
   # end
 
   def run
-    # binding.pry
     user        = TwitterUser.new
     friends_mng = RelationshipManager.new(user)
     tweet_mng   = TweetManager.new(user)
-
-    followed    = friends_mng.refollow_all
+    # followed    = friends_mng.refollow_all
     # unfollowed  = follow_mng.unfollow_onesided
     tweeted     = tweet_mng.tweet_scheduled
 
@@ -35,7 +33,7 @@ class ScheduleRunner
       p unfollowed.map { |f| "#{f.name} (#{f.screen_name})" }.join(', ')
     end
 
-    if tweeted
+    if tweeted.present?
       puts 'Tweeted:'
       p tweeted.map { |f| "#{f.text} (#{f.created_at})" }.join(', ')
     end

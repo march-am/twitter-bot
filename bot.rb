@@ -35,5 +35,5 @@ EXEC_INTERVAL_SEC = (60 * 10).freeze
 # - CL引数に合わせて必要なモジュールだけrequireして読み込みを軽くする
 #
 
-# runner = ScheduleRunner.new
-# runner.run
+runner = ScheduleRunner.new
+runner.run

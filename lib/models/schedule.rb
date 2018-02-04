@@ -12,8 +12,8 @@ class Schedule < ActiveRecord::Base
       start_tod = time - EXEC_INTERVAL_SEC
       # FIXME: RelationじゃなくてArrayにしちゃうのでなんとかしたい
       select do |tweet|
-        Tod::Shift.new(start_tod, end_tod).include?(tweet.time) \
-        && (tweet.last_tweeted_at + 60 * 60 < now)
+        tweeted_long_ago = tweet.last_tweeted_at ? (tweet.last_tweeted_at + EXEC_INTERVAL_SEC + 60 < now) : true
+        Tod::Shift.new(start_tod, end_tod).include?(tweet.time) && tweeted_long_ago
       end
     end
 
