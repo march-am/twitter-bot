@@ -18,5 +18,6 @@ group :developemt, :test do
   gem 'factory_bot'
   gem 'guard'
   gem 'guard-rspec'
+  gem 'rake'
   gem 'rspec'
 end
