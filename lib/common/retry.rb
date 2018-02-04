@@ -3,11 +3,12 @@ module Retry
     try_cnt = 0
     begin
       Retryable.retryable(
-          tries: 5,
-          sleep: 10,
-          on: [Twitter::Error],
-          not: [Twitter::Error::TooManyRequests]) do |r, e|
-        puts "catched \"#{e}\", retry(#{r})"
+        tries: 5,
+        sleep: 10,
+        on: [Twitter::Error],
+        not: [Twitter::Error::TooManyRequests]
+      ) do |r, e|
+        puts "catched \"#{e}\", retry(#{r})" unless r.zero?
         yield
       end
     rescue Twitter::Error::TooManyRequests => e

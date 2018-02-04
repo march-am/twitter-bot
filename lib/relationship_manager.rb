@@ -1,9 +1,9 @@
-class RelationshipMaganer
+class RelationshipManager
   include Retry
   attr_reader :user, :followed, :unfollowed
 
   def initialize(user)
-    @user = user
+    @user = user.client
     @followed = []
     @unfollowed = []
   end
@@ -14,7 +14,7 @@ class RelationshipMaganer
         next if user.friends.include?(follower)
         next if user.friendships_outgoing.include?(follower)
         user.follow(follower)
-        followed  << follower
+        followed << follower
       end
     end
     followed

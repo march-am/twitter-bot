@@ -5,18 +5,17 @@ class ScheduleRunner
     @todo = []
   end
 
-  def todo_builder
-    now = Time.now
-
-    # nowのdatetimeをみて、やることをくみたてる
-    # @todo ||= に追加する
-  end
+  # nowのdatetimeをみて、やることをくみたてる
+  # @todo ||= に追加する
+  # def todo_builder
+  #   now = Time.now
+  # end
 
   def run
-    binding.pry
+    # binding.pry
     user        = TwitterUser.new
     friends_mng = RelationshipManager.new(user)
-    tweet_mng   = TweetMaganer.new(user)
+    tweet_mng   = TweetManager.new(user)
 
     followed    = friends_mng.refollow_all
     # unfollowed  = follow_mng.unfollow_onesided
@@ -24,7 +23,7 @@ class ScheduleRunner
 
     ### output ###
 
-    puts "at #{Time.now.to_s}"
+    puts "at #{Time.now}"
 
     if friends_mng.any_followed?
       puts 'Followed:'
@@ -38,7 +37,7 @@ class ScheduleRunner
 
     if tweeted
       puts 'Tweeted:'
-      p tweeted.map { |f| "#{f.text} (#{f.created_at})"}.join(', ')
+      p tweeted.map { |f| "#{f.text} (#{f.created_at})" }.join(', ')
     end
 
     # puts 'did nothing'

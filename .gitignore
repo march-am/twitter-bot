@@ -24,7 +24,6 @@
 # Ignore Spring files.
 /spring/*.pid
 /vendor/bundle
-.ruby-version
 
 # Ignore Secret-key files
 .env*

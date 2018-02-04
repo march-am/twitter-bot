@@ -1,6 +1,5 @@
 class TwitterUser
   include Retry
-  attr_reader :client
 
   def initialize
     @client = client

@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-ruby '2.4.2'
+ruby '2.5.0'
 
 gem 'activerecord'
 gem 'mysql2'
@@ -14,6 +14,9 @@ group :developemt do
 end
 
 group :developemt, :test do
-  gem 'rspec'
+  gem 'database_cleaner'
   gem 'factory_bot'
+  gem 'guard'
+  gem 'guard-rspec'
+  gem 'rspec'
 end
