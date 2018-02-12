@@ -4,12 +4,13 @@ language: ruby
 rvm: 2.5.0
 bundler_args: --with test
 cache: bundler
-script:
-  - bin/rspec
 before_install:
   - gem update --system
   - cp database.travis.yml database.yml
   - mysql -e 'CREATE DATABASE twibot_test;'
+script:
+  - bundle exec ridgepole -c database.yml -E test -a -f Schemafile
+  - bin/rspec
 env:
   global:
     # API KEY
