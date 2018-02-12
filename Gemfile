@@ -4,6 +4,7 @@ ruby '2.5.0'
 gem 'activerecord'
 gem 'mysql2'
 gem 'retryable'
+gem 'ridgepole'
 gem 'tod'
 gem 'twitter'
 

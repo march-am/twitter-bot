@@ -1,9 +1,18 @@
-db:
-  test:
-    adapter:   mysql2
-    host:      localhost
-    username:  root
-    database:  twibot-test
-    encoding:  utf8mb4
-    charset:   utf8mb4
-    collation: utf8mb4_general_ci
+default: &default
+  adapter:   mysql2
+  host:      localhost
+  username:  root
+  encoding:  utf8mb4
+  charset:   utf8mb4
+  collation: utf8mb4_general_ci
+  pool:      5
+
+development:
+  <<: *default
+  database:  twibot
+test:
+  <<: *default
+  database:  twibot_test
+production:
+  <<: *default
+  database:  twibot
