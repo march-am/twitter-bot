@@ -7,9 +7,9 @@ cache: bundler
 before_install:
   - gem update --system
   - cp database.travis.yml database.yml
-  - mysql -e 'CREATE DATABASE twibot; CREATE DATABASE twibot_test;'
+  - mysql -e 'CREATE DATABASE twibot_test;'
 script:
-  - bundle exec ridgepole -c database.yml -a -f Schemafile
+  - bundle exec ridgepole -c database.yml -E test -a -f Schemafile
   - bin/rspec
 env:
   global:
