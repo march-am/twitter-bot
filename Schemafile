@@ -1,0 +1,40 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+create_table "articles", id: :integer, unsigned: true, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4" do |t|
+  t.string "title", limit: 1024
+  t.text "content"
+  t.string "text_type"
+  t.datetime "posted_at"
+  t.text "categories"
+  t.string "custom_url", limit: 1024, default: ""
+  t.string "edit_url", limit: 1024
+  t.text "attrs_json"
+  t.datetime "created_at", default: -> { "CURRENT_TIMESTAMP" }
+  t.datetime "updated_at", default: -> { "CURRENT_TIMESTAMP" }
+end
+
+create_table "replies", id: :integer, unsigned: true, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  t.string "content", limit: 1024
+  t.string "memo", limit: 1024
+  t.datetime "created_at", default: -> { "CURRENT_TIMESTAMP" }
+  t.datetime "updated_at", default: -> { "CURRENT_TIMESTAMP" }
+end
+
+create_table "schedules", id: :integer, unsigned: true, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  t.integer "year"
+  t.integer "month"
+  t.integer "day"
+  t.time "time"
+  t.string "content", limit: 1024, default: "", null: false
+  t.string "memo", limit: 1024
+  t.datetime "last_tweeted_at"
+  t.datetime "created_at", default: -> { "CURRENT_TIMESTAMP" }
+  t.datetime "updated_at", default: -> { "CURRENT_TIMESTAMP" }
+end
+
+create_table "usuals", id: :integer, unsigned: true, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  t.string "content", limit: 1024
+  t.string "memo", limit: 1024
+  t.datetime "created_at", default: -> { "CURRENT_TIMESTAMP" }
+  t.datetime "updated_at", default: -> { "CURRENT_TIMESTAMP" }
+end
