@@ -21,21 +21,19 @@ class ScheduleRunner
 
     ### output ###
 
-    puts "at #{Time.now}"
-
     if friends_mng.any_followed?
-      puts 'Followed:'
-      p followed.map { |f| "#{f.name} (#{f.screen_name})" }.join(', ')
+      puts "Followed (at #{Time.now}): "
+      puts followed.map { |f| "#{f.name} (#{f.screen_name})" }.join(', ')
     end
 
     if friends_mng.any_unfollowed?
-      puts 'Unfollowed:'
-      p unfollowed.map { |f| "#{f.name} (#{f.screen_name})" }.join(', ')
+      puts "Unfollowed (at #{Time.now}): "
+      puts unfollowed.map { |f| "#{f.name} (#{f.screen_name})" }.join(', ')
     end
 
     if tweeted.present?
-      puts 'Tweeted:'
-      p tweeted.map { |f| "#{f.text} (#{f.created_at})" }.join(', ')
+      puts "Tweeted: (at #{Time.now}): "
+      puts tweeted.map { |f| "#{f.text} (#{f.created_at})" }.join(', ')
     end
 
     # puts 'did nothing'
